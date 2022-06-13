@@ -1,0 +1,17 @@
+.input{
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 40rem;
+  padding: 1rem;
+}
+.static{
+  text-align: center;
+  color:white;
+
+}
+.input ul{
+  list-style: none;
+  padding: 0px;
+  height: fit-content;
+  margin: -2px;
+}
