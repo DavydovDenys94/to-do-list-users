@@ -8,7 +8,7 @@ import classes from "./UserForm.module.css";
 
 function UserForm(props) {
   const [name, setName] = useState("");
-  const [age, setAge] = useState();
+  const [age, setAge] = useState("");
   const [error, setError] = useState();
 
   const addUserHandler = (e) => {
@@ -18,6 +18,9 @@ function UserForm(props) {
       id: Math.random().toString(),
       name: name,
       age: age,
+    };
+    const hasNumber = (myString) => {
+      return /\d/.test(myString);
     };
     if (name.trim().length < 1 || age.trim().length < 1) {
       setError({
@@ -31,15 +34,13 @@ function UserForm(props) {
         content: "Impossible age, enter valid age",
       });
       return;
-    } else if (
-      name.split("").forEach((element) => {
-        !isNaN(element) &&
-          setError({
-            title: "An error occured",
-            content: "Name should consist only of letters!",
-          });
-      })
-    );
+    } else if (hasNumber(name)) {
+      setError({
+        title: "An error occured",
+        content: "Name should consist only of letters!",
+      });
+      return;
+    }
 
     props.addUsers(addUser);
     setName("");
